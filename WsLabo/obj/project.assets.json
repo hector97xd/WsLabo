@@ -2143,14 +2143,14 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hectorguevara/Projects/WsLabo/WsLabo/WsLabo.csproj",
+      "projectUniqueName": "/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/WsLabo.csproj",
       "projectName": "WsLabo",
-      "projectPath": "/Users/hectorguevara/Projects/WsLabo/WsLabo/WsLabo.csproj",
+      "projectPath": "/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/WsLabo.csproj",
       "packagesPath": "/Users/hectorguevara/.nuget/packages/",
-      "outputPath": "/Users/hectorguevara/Projects/WsLabo/WsLabo/obj/",
+      "outputPath": "/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/hectorguevara/.nuget/NuGet/NuGet.Config"
+        "/Users/hectorguevara/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

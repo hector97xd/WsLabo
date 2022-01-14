@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mUbVwxgc25eApKUKgpNOAZc1wmJ5E/LxlK+cBU3rnoXBfm8VlYQoQzXDtNdVOeIRr0Td/1iiKm+F6HHzGhUOeg==",
+  "dgSpecHash": "y8mptUGFNwP9Nwvum+02sZ4CXY4NRaCtz/S4hw3lgod2gmIGt63Idl8GJ+b2pjGK38pH5zj4sAZEvZsJ0XBeqQ==",
   "success": true,
-  "projectFilePath": "/Users/hectorguevara/Projects/WsLabo/WsLabo/WsLabo.csproj",
+  "projectFilePath": "/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/WsLabo.csproj",
   "expectedPackageFiles": [
     "/Users/hectorguevara/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/hectorguevara/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
