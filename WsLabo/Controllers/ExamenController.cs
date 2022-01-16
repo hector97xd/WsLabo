@@ -21,7 +21,7 @@ namespace WsLabo.Controllers
         {
             _context = context;
         }
-        [HttpGet("Cotizacion")]
+        [HttpPost("Cotizacion")]
         public async Task<string> GetCotizacion([FromBody] int Id)
         {
             var response = new Response();
