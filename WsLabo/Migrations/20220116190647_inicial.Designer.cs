@@ -12,7 +12,7 @@ using WsLabo.Context;
 namespace WsLabo.Migrations
 {
     [DbContext(typeof(LaboDbContext))]
-    [Migration("20220116012219_inicial")]
+    [Migration("20220116190647_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,31 @@ namespace WsLabo.Migrations
                     b.HasIndex("TipoExamenId");
 
                     b.ToTable("Examen");
+                });
+
+            modelBuilder.Entity("WsLabo.Models.Laboratorio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Laboratorio");
                 });
 
             modelBuilder.Entity("WsLabo.Models.Paciente", b =>
@@ -110,6 +135,13 @@ namespace WsLabo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LaboratorioId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -117,14 +149,13 @@ namespace WsLabo.Migrations
                     b.Property<double>("Precio")
                         .HasColumnType("float");
 
-                    b.Property<double>("PrecioReferencia")
-                        .HasColumnType("float");
-
                     b.Property<string>("TipoMuestra")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LaboratorioId");
 
                     b.ToTable("TipoExamen");
                 });
@@ -146,6 +177,17 @@ namespace WsLabo.Migrations
                     b.Navigation("Paciente");
 
                     b.Navigation("TipoExamen");
+                });
+
+            modelBuilder.Entity("WsLabo.Models.TipoExamen", b =>
+                {
+                    b.HasOne("WsLabo.Models.Laboratorio", "Laboratorio")
+                        .WithMany()
+                        .HasForeignKey("LaboratorioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Laboratorio");
                 });
 #pragma warning restore 612, 618
         }

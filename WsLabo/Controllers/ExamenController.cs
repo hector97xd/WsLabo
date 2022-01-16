@@ -22,13 +22,13 @@ namespace WsLabo.Controllers
             _context = context;
         }
         [HttpGet("Cotizacion")]
-        public async Task<string> Get()
+        public async Task<string> GetCotizacion([FromBody] int Id)
         {
             var response = new Response();
             try
             {
                 var ls = await _context.TipoExamen.ToListAsync();
-                response.Data = JsonConvert.SerializeObject(ls);
+                response.Data = JsonConvert.SerializeObject(ls.Where(x=>x.Laboratorio.Id == Id ));
                 response.Status = "Ok";
                 response.Message = "Lista de Tipo de Examenes";
             }
@@ -40,11 +40,30 @@ namespace WsLabo.Controllers
 
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("Comparacion")]
+        public async Task<string> GetComparacion([FromBody] RequestExamen request)
         {
-            return "value";
+            var response = new Response();
+            try
+            {
+                var lsCodigos = request.Codigos.ToList();
+                var lsExamenes = _context.TipoExamen.Include(p => p.Laboratorio);
+                var lsLocal = lsExamenes.Where(x => x.Laboratorio.Id == request.IdLocal && lsCodigos.Any(z => z.Codigo == x.Codigo )).ToList();
+                var lsReferencia = lsExamenes.Where(x => x.Laboratorio.Id == request.IdReferencia && request.Codigos.Any(y=> y.Codigo == x.Codigo)).ToList();
+                var lsUnion = lsLocal.Join(lsReferencia,
+                    local => local.Codigo,
+                    referencia => referencia.Codigo,
+                    (local, referencia) => new { Nombre = local.Nombre, Precio = local.Precio, PrecioReferencia = referencia.Precio });
+                response.Data = JsonConvert.SerializeObject(lsUnion);
+                response.Status = "Ok";
+                response.Message = "Lista de Tipo de Examenes";
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+            return JsonConvert.SerializeObject(response);
+
         }
 
         // POST api/values

@@ -16,6 +16,7 @@ namespace WsLabo.Context
         public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<TipoExamen> TipoExamen { get; set; }
         public virtual DbSet<Examen> Examen { get; set; }
+        public virtual DbSet<Laboratorio> Laboratorio { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

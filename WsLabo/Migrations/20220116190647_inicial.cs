@@ -10,6 +10,21 @@ namespace WsLabo.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Laboratorio",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Laboratorio", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Paciente",
                 columns: table => new
                 {
@@ -34,14 +49,21 @@ namespace WsLabo.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LaboratorioId = table.Column<int>(type: "int", nullable: false),
+                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TipoMuestra = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<double>(type: "float", nullable: false),
-                    PrecioReferencia = table.Column<double>(type: "float", nullable: false)
+                    Precio = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoExamen", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TipoExamen_Laboratorio_LaboratorioId",
+                        column: x => x.LaboratorioId,
+                        principalTable: "Laboratorio",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,6 +105,11 @@ namespace WsLabo.Migrations
                 name: "IX_Examen_TipoExamenId",
                 table: "Examen",
                 column: "TipoExamenId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TipoExamen_LaboratorioId",
+                table: "TipoExamen",
+                column: "LaboratorioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -95,6 +122,9 @@ namespace WsLabo.Migrations
 
             migrationBuilder.DropTable(
                 name: "TipoExamen");
+
+            migrationBuilder.DropTable(
+                name: "Laboratorio");
         }
     }
 }
