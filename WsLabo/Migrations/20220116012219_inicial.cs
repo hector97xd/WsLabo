@@ -35,11 +35,9 @@ namespace WsLabo.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TipoMuestra = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Precio = table.Column<double>(type: "float", nullable: false),
-                    PrecioReferencia = table.Column<double>(type: "float", nullable: false),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false),
-                    TotalReferencia = table.Column<double>(type: "float", nullable: false)
+                    PrecioReferencia = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

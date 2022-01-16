@@ -1,25 +1,23 @@
-version: '3.1'
+version: '3.9'
 
 services:
-
-  mssql:
+  db:
     container_name: mssql
     image: mssql
     restart: always
-    environment:
     ports:
-      - 1433:1433
+      - 8001:1433
     environment:
       ACCEPT_EULA: 1 
       MSSQL_USER: sa
       MSSQL_SA_PASSWORD: MyPass@word
       MSSQL_PID: Developer    
 
-  webapi:
+  api:
     container_name: webapi
     image: webapi
     restart: always
     depends_on: 
-      - mssql
+      - db
     ports:
-       - 8081:80
+       - 8000:80
