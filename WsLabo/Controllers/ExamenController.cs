@@ -41,15 +41,16 @@ namespace WsLabo.Controllers
         }
 
         [HttpPost("Comparacion")]
-        public async Task<string> GetComparacion([FromBody] RequestExamen request)
+        public string GetComparacion([FromBody] RequestExamen request)
         {
             var response = new Response();
             try
             {
-                var lsCodigos = request.Codigos.ToList();
-                var lsExamenes = _context.TipoExamen.Include(p => p.Laboratorio);
-                var lsLocal = lsExamenes.Where(x => x.Laboratorio.Id == request.IdLocal && lsCodigos.Any(z => z.Codigo == x.Codigo )).ToList();
-                var lsReferencia = lsExamenes.Where(x => x.Laboratorio.Id == request.IdReferencia && request.Codigos.Any(y=> y.Codigo == x.Codigo)).ToList();
+                var lsExamenes =  _context.TipoExamen.Include(p => p.Laboratorio);
+                var ls = new List<TipoExamen>();
+                ls.AddRange(lsExamenes);
+                var lsLocal =  ls.Where(x=> x.Laboratorio.Id == request.IdLocal && request.Codigos.Any(z => z.Codigo == x.Codigo )).ToList();
+                var lsReferencia = ls.Where(x => x.Laboratorio.Id == request.IdReferencia && request.Codigos.Any(z => z.Codigo == x.Codigo)).ToList();
                 var lsUnion = lsLocal.Join(lsReferencia,
                     local => local.Codigo,
                     referencia => referencia.Codigo,
