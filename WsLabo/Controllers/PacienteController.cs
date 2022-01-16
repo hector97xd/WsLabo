@@ -79,11 +79,16 @@ namespace WsLabo.Controllers
                     response.Message = "Se debe enviar el id";
                     response.Data = JsonConvert.SerializeObject(datos);
                 }
-                var paciente = _context.Paciente.Find(id);
-
+                var paciente = _context.Paciente.FirstOrDefault(x=>x.Id == id);
                 if(paciente != null)
                 {
-                    _context.Paciente.Update(datos);
+                    paciente.Nombre = datos.Nombre;
+                    paciente.Apellido = datos.Apellido;
+                    paciente.Direccion = datos.Direccion;
+                    paciente.Telefono = datos.Telefono;
+                    paciente.FechaNacimiento = datos.FechaNacimiento;
+                    paciente.Dui = datos.Dui;
+                    paciente.Correo = datos.Correo;
                     await _context.SaveChangesAsync();
                     response.Status = "Ok";
                     response.Message = "Datos modificado correctamente.";
