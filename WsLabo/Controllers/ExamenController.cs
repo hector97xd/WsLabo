@@ -46,7 +46,6 @@ namespace WsLabo.Controllers
             try
             {
                 var ls = await _context.Examen.
-                    Include(p => p.Laboratorio).
                     Include(p => p.Paciente).
                     Include(p=> p.TipoExamen).
                     Where(x => x.fechaIngreso <= request.FechaInicio && x.fechaIngreso >= request.FechaFin).ToListAsync();

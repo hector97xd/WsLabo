@@ -6,7 +6,6 @@ namespace WsLabo.Models
         public int Id { get; set; }
         public virtual Paciente Paciente { get; set; }
         public virtual TipoExamen TipoExamen { get; set; }
-        public virtual Laboratorio Laboratorio { get; set; }
         public string Estado { get; set; }
         public string UsuarioIngreso { get; set; }
         public DateTime fechaIngreso { get; set; }
