@@ -22,12 +22,12 @@ namespace WsLabo.Controllers
             _context = context;
         }
         [HttpPost("Cotizacion")]
-        public async Task<string> GetCotizacion([FromBody] int Id)
+        public async Task<string> GetCotizacion([FromBody] RequestCotizacion request)
         {
             var response = new Response();
             try
             {
-                var ls = await _context.TipoExamen.Include(p=> p.Laboratorio).Where(x => x.Laboratorio.Id == Id).ToListAsync();
+                var ls = await _context.TipoExamen.Include(p=> p.Laboratorio).Where(x => x.Laboratorio.Id == request.Id).ToListAsync();
                 response.Data = JsonConvert.SerializeObject(ls);
                 response.Status = "Ok";
                 response.Message = "Lista de Tipo de Examenes";

@@ -11,5 +11,9 @@ namespace WsLabo.Models
     {
         public string Codigo { get; set; }
     }
+    public class RequestCotizacion
+    {
+        public int Id { get; set; }
+    }
 }
 
