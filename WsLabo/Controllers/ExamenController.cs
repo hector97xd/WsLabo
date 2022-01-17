@@ -39,7 +39,28 @@ namespace WsLabo.Controllers
             return JsonConvert.SerializeObject(response);
 
         }
+        [HttpPost("Seguimiento")]
+        public async Task<string> GetSeguimiento([FromBody] RequestSeguimiento request)
+        {
+            var response = new Response();
+            try
+            {
+                var ls = await _context.Examen.
+                    Include(p => p.Laboratorio).
+                    Include(p => p.Paciente).
+                    Include(p=> p.TipoExamen).
+                    Where(x => x.fechaIngreso <= request.FechaInicio && x.fechaIngreso >= request.FechaFin).ToListAsync();
+                response.Data = JsonConvert.SerializeObject(ls);
+                response.Status = "Ok";
+                response.Message = "Lista de Tipo de Examenes";
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+            return JsonConvert.SerializeObject(response);
 
+        }
         [HttpPost("Comparacion")]
         public string GetComparacion([FromBody] RequestExamen request)
         {

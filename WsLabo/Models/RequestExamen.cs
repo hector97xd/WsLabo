@@ -15,5 +15,10 @@ namespace WsLabo.Models
     {
         public int Id { get; set; }
     }
+    public class RequestSeguimiento
+    {
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
+    }
 }
 
