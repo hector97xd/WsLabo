@@ -12,7 +12,7 @@ using WsLabo.Context;
 namespace WsLabo.Migrations
 {
     [DbContext(typeof(LaboDbContext))]
-    [Migration("20220117220626_inicial")]
+    [Migration("20220117222506_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,7 +47,7 @@ namespace WsLabo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("fechaIngreso")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.HasKey("Id");
 

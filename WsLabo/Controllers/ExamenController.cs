@@ -48,7 +48,7 @@ namespace WsLabo.Controllers
                 var ls = await _context.Examen.
                     Include(p => p.Paciente).
                     Include(p=> p.TipoExamen).
-                    Where(x => x.fechaIngreso <= request.FechaInicio && x.fechaIngreso >= request.FechaFin).ToListAsync();
+                    Where(x => x.fechaIngreso >= request.FechaInicio && x.fechaIngreso <= request.FechaFin).ToListAsync();
                 response.Data = JsonConvert.SerializeObject(ls);
                 response.Status = "Ok";
                 response.Message = "Lista de Tipo de Examenes";

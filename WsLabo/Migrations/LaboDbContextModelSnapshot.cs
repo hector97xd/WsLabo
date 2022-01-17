@@ -45,7 +45,7 @@ namespace WsLabo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("fechaIngreso")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.HasKey("Id");
 

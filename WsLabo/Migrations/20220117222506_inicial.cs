@@ -76,7 +76,7 @@ namespace WsLabo.Migrations
                     TipoExamenId = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UsuarioIngreso = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fechaIngreso = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    fechaIngreso = table.Column<DateTime>(type: "Date", nullable: false)
                 },
                 constraints: table =>
                 {

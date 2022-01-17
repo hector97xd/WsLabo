@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WsLabo.Models
 {
     public class RequestExamen
@@ -17,7 +20,11 @@ namespace WsLabo.Models
     }
     public class RequestSeguimiento
     {
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
         public DateTime FechaInicio { get; set; }
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
         public DateTime FechaFin { get; set; }
     }
 }
