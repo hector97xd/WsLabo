@@ -27,8 +27,8 @@ namespace WsLabo.Controllers
             var response = new Response();
             try
             {
-                var ls = await _context.TipoExamen.ToListAsync();
-                response.Data = JsonConvert.SerializeObject(ls.Where(x=>x.Laboratorio.Id == Id ));
+                var ls = await _context.TipoExamen.Include(p=> p.Laboratorio).Where(x => x.Laboratorio.Id == Id).ToListAsync();
+                response.Data = JsonConvert.SerializeObject(ls);
                 response.Status = "Ok";
                 response.Message = "Lista de Tipo de Examenes";
             }
