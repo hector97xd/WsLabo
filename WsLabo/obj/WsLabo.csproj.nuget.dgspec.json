@@ -14,7 +14,7 @@
         "outputPath": "/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/hectorguevara/.nuget/NuGet/NuGet.Config"
+          "/Users/hectorguevara/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.1, )"

@@ -9,7 +9,7 @@ var service = builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors();
 var connectionString = builder.Configuration.GetConnectionString("AppDb");
 builder.Services.AddDbContext<LaboDbContext>(x=> x.UseSqlServer(connectionString));
 var app = builder.Build();
@@ -21,6 +21,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors(x => x
     .AllowAnyHeader()

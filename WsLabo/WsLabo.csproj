@@ -14,6 +14,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Context\" />
     <None Remove="Newtonsoft.Json.Bson" />
+    <None Remove="Microsoft.AspNetCore.Cors" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
