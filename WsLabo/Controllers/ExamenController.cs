@@ -21,6 +21,29 @@ namespace WsLabo.Controllers
         {
             _context = context;
         }
+
+        [HttpPost("Registrar")]
+        public async Task<string> RegistrarExamen([FromBody] Examen examen)
+        {
+            var response = new Response();
+            try
+            {
+                _context.Examen.Add(examen);
+                await _context.SaveChangesAsync();
+                response.Status = "Ok";
+                response.Message = "Datos insertados correctamente.";
+                response.Data = JsonConvert.SerializeObject(examen);
+
+            }
+            catch (Exception ex)
+            {
+                response.Status = "Error";
+                response.Message = ex.ToString();
+                response.Data = "";
+            }
+            return JsonConvert.SerializeObject(response);
+
+        }
         [HttpPost("Cotizacion")]
         public async Task<string> GetCotizacion([FromBody] RequestCotizacion request)
         {
