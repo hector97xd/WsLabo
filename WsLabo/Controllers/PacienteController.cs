@@ -113,7 +113,7 @@ namespace WsLabo.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("Eliminar/{id}")]
+        [HttpPut("Eliminar/{id}")]
         public async Task<string> Delete(int? id)
         {
             var response = new Response();
@@ -125,14 +125,13 @@ namespace WsLabo.Controllers
                     response.Message = "Se debe enviar el id";
                     response.Data = "";
                 }
-                var paciente = _context.Paciente.Find(id);
-
+                var paciente = _context.Paciente.FirstOrDefault(x => x.Id == id);
                 if (paciente != null)
                 {
-                    _context.Paciente.Remove(paciente);
+                    paciente.Estado = 0;
                     await _context.SaveChangesAsync();
                     response.Status = "Ok";
-                    response.Message = "Registro eliminado correctamente.";
+                    response.Message = "Datos modificado correctamente.";
                     response.Data = JsonConvert.SerializeObject(paciente);
                 }
                 else

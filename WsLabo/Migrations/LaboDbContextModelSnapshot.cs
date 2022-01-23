@@ -105,6 +105,9 @@ namespace WsLabo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime2");
 

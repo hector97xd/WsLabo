@@ -13,7 +13,7 @@ namespace WsLabo.Models
         public string UsuarioIngreso { get; set; }
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
-        public DateTime fechaIngreso { get; set; }
+        public DateTime fechaIngreso { get; set; }      
     }
 }
 
