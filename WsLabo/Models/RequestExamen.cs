@@ -27,5 +27,16 @@ namespace WsLabo.Models
         [Column(TypeName = "Date")]
         public DateTime FechaFin { get; set; }
     }
+    public class RequestExam
+    {
+        public int Id { get; set; }
+        public int Paciente { get; set; }
+        public int TipoExamen { get; set; }
+        public string Estado { get; set; }
+        public string UsuarioIngreso { get; set; }
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
+        public DateTime fechaIngreso { get; set; }
+    }
 }
 

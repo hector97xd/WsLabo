@@ -128,7 +128,7 @@ namespace WsLabo.Controllers
                 var paciente = _context.Paciente.FirstOrDefault(x => x.Id == id);
                 if (paciente != null)
                 {
-                    paciente.Estado = 0;
+                    paciente.Estado = "I";
                     await _context.SaveChangesAsync();
                     response.Status = "Ok";
                     response.Message = "Datos modificado correctamente.";

@@ -23,12 +23,18 @@ namespace WsLabo.Controllers
         }
 
         [HttpPost("Registrar")]
-        public async Task<string> RegistrarExamen([FromBody] Examen examen)
+        public async Task<string> RegistrarExamen([FromBody] RequestExam examen)
         {
             var response = new Response();
             try
             {
-                _context.Examen.Add(examen);
+                Examen exa = new Examen();
+                exa.Paciente = _context.Paciente.Find(examen.Paciente);
+                exa.TipoExamen = _context.TipoExamen.Find(examen.TipoExamen);
+                exa.Estado = examen.Estado;
+                exa.fechaIngreso = examen.fechaIngreso;
+                exa.UsuarioIngreso = examen.UsuarioIngreso;
+                _context.Examen.Add(exa);
                 await _context.SaveChangesAsync();
                 response.Status = "Ok";
                 response.Message = "Datos insertados correctamente.";
@@ -108,24 +114,6 @@ namespace WsLabo.Controllers
             }
             return JsonConvert.SerializeObject(response);
 
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
