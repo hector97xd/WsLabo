@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{E06EF207-E533-42D2-8975-6E094E1ADC38}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WsLabo/Controllers/ExamenController.cs">
+    <Files>
+      <File FileName="WsLabo/Controllers/ExamenController.cs" Line="98" Column="1" />
+      <File FileName="WsLabo/Models/Laboratorio.cs" Line="1" Column="1" />
+      <File FileName="WsLabo/Models/RequestExamen.cs" Line="11" Column="37" />
+      <File FileName="WsLabo/Models/Response.cs" Line="1" Column="1" />
+      <File FileName="WsLabo/Models/TipoExamen.cs" Line="4" Column="21" />
+      <File FileName="WsLabo/Controllers/PacienteController.cs" Line="131" Column="41" />
+      <File FileName="WsLabo/Models/Paciente.cs" Line="19" Column="22" />
+      <File FileName="WsLabo/Context/LaboDbContext.cs" Line="9" Column="16" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WsLabo" expanded="True">
+            <Node name="WsLabo" expanded="True">
+              <Node name="Context" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.WsLabo PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/Controllers/ExamenController.cs" relfile="WsLabo/Controllers/ExamenController.cs" line="37" column="1" />
+      <Breakpoint file="/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/Controllers/ExamenController.cs" relfile="WsLabo/Controllers/ExamenController.cs" line="98" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

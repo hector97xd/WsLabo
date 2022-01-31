@@ -2376,7 +2376,7 @@
       "outputPath": "/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/hectorguevara/.nuget/NuGet/NuGet.Config"
+        "/Users/hectorguevara/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
