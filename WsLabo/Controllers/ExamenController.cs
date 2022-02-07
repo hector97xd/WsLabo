@@ -28,14 +28,9 @@ namespace WsLabo.Controllers
             var response = new Response();
             try
             {
-                var lsTipoExamen = new List<TipoExamen>();
-                foreach (var item in examen.TipoExamen)
-                {
-                    lsTipoExamen.Add(_context.TipoExamen.Find(item));
-                }
                 Examen exa = new Examen();
                 exa.Paciente = _context.Paciente.Find(examen.Paciente);
-                exa.TipoExamen = lsTipoExamen;
+                exa.TipoExamen = _context.TipoExamen.Find(examen.TipoExamen);
                 exa.Estado = examen.Estado;
                 exa.fechaIngreso = examen.fechaIngreso;
                 exa.UsuarioIngreso = examen.UsuarioIngreso;

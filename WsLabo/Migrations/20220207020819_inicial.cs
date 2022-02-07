@@ -59,12 +59,43 @@ namespace WsLabo.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TipoExamen",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LaboratorioId = table.Column<int>(type: "int", nullable: false),
+                    categoriaId = table.Column<int>(type: "int", nullable: false),
+                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TipoMuestra = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Precio = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoExamen", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TipoExamen_Categoria_categoriaId",
+                        column: x => x.categoriaId,
+                        principalTable: "Categoria",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TipoExamen_Laboratorio_LaboratorioId",
+                        column: x => x.LaboratorioId,
+                        principalTable: "Laboratorio",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Examen",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PacienteId = table.Column<int>(type: "int", nullable: false),
+                    TipoExamenId = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UsuarioIngreso = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fechaIngreso = table.Column<DateTime>(type: "Date", nullable: false)
@@ -78,40 +109,10 @@ namespace WsLabo.Migrations
                         principalTable: "Paciente",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TipoExamen",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LaboratorioId = table.Column<int>(type: "int", nullable: false),
-                    categoriaId = table.Column<int>(type: "int", nullable: false),
-                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TipoMuestra = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<double>(type: "float", nullable: false),
-                    ExamenId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TipoExamen", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TipoExamen_Categoria_categoriaId",
-                        column: x => x.categoriaId,
-                        principalTable: "Categoria",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TipoExamen_Examen_ExamenId",
-                        column: x => x.ExamenId,
-                        principalTable: "Examen",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_TipoExamen_Laboratorio_LaboratorioId",
-                        column: x => x.LaboratorioId,
-                        principalTable: "Laboratorio",
+                        name: "FK_Examen_TipoExamen_TipoExamenId",
+                        column: x => x.TipoExamenId,
+                        principalTable: "TipoExamen",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -122,14 +123,14 @@ namespace WsLabo.Migrations
                 column: "PacienteId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Examen_TipoExamenId",
+                table: "Examen",
+                column: "TipoExamenId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TipoExamen_categoriaId",
                 table: "TipoExamen",
                 column: "categoriaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TipoExamen_ExamenId",
-                table: "TipoExamen",
-                column: "ExamenId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TipoExamen_LaboratorioId",
@@ -140,19 +141,19 @@ namespace WsLabo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Examen");
+
+            migrationBuilder.DropTable(
+                name: "Paciente");
+
+            migrationBuilder.DropTable(
                 name: "TipoExamen");
 
             migrationBuilder.DropTable(
                 name: "Categoria");
 
             migrationBuilder.DropTable(
-                name: "Examen");
-
-            migrationBuilder.DropTable(
                 name: "Laboratorio");
-
-            migrationBuilder.DropTable(
-                name: "Paciente");
         }
     }
 }

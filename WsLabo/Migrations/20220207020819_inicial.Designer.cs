@@ -12,7 +12,7 @@ using WsLabo.Context;
 namespace WsLabo.Migrations
 {
     [DbContext(typeof(LaboDbContext))]
-    [Migration("20220207002407_inicial")]
+    [Migration("20220207020819_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,9 @@ namespace WsLabo.Migrations
                     b.Property<int>("PacienteId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TipoExamenId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UsuarioIngreso")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -66,6 +69,8 @@ namespace WsLabo.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PacienteId");
+
+                    b.HasIndex("TipoExamenId");
 
                     b.ToTable("Examen");
                 });
@@ -154,9 +159,6 @@ namespace WsLabo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ExamenId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LaboratorioId")
                         .HasColumnType("int");
 
@@ -176,8 +178,6 @@ namespace WsLabo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExamenId");
-
                     b.HasIndex("LaboratorioId");
 
                     b.HasIndex("categoriaId");
@@ -193,15 +193,19 @@ namespace WsLabo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WsLabo.Models.TipoExamen", "TipoExamen")
+                        .WithMany()
+                        .HasForeignKey("TipoExamenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Paciente");
+
+                    b.Navigation("TipoExamen");
                 });
 
             modelBuilder.Entity("WsLabo.Models.TipoExamen", b =>
                 {
-                    b.HasOne("WsLabo.Models.Examen", null)
-                        .WithMany("TipoExamen")
-                        .HasForeignKey("ExamenId");
-
                     b.HasOne("WsLabo.Models.Laboratorio", "Laboratorio")
                         .WithMany()
                         .HasForeignKey("LaboratorioId")
@@ -217,11 +221,6 @@ namespace WsLabo.Migrations
                     b.Navigation("Laboratorio");
 
                     b.Navigation("categoria");
-                });
-
-            modelBuilder.Entity("WsLabo.Models.Examen", b =>
-                {
-                    b.Navigation("TipoExamen");
                 });
 #pragma warning restore 612, 618
         }

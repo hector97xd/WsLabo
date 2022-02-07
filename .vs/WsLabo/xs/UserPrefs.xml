@@ -1,15 +1,28 @@
 ﻿<Properties StartupConfiguration="{E06EF207-E533-42D2-8975-6E094E1ADC38}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../Projects/PdfTest/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WsLabo/Controllers/ExamenController.cs">
     <Files>
       <File FileName="../../../Projects/PdfTest/Program.cs" Line="12" Column="32" />
+      <File FileName="WsLabo/Controllers/ExamenController.cs" Line="31" Column="1" />
+      <File FileName="WsLabo/Models/Examen.cs" Line="12" Column="43" />
+      <File FileName="WsLabo/Models/RequestExamen.cs" Line="34" Column="50" />
+      <File FileName="WsLabo/Models/TipoExamen.cs" Line="8" Column="35" />
+      <File FileName="WsLabo/Models/Categoria.cs" Line="7" Column="29" />
+      <File FileName="WsLabo/Models/Laboratorio.cs" Line="4" Column="18" />
+      <File FileName="WsLabo/Controllers/LaboController.cs" Line="29" Column="39" />
+      <File FileName="WsLabo/Context/LaboDbContext.cs" Line="19" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="PdfTest" expanded="True" selected="True">
-            <Node name="PdfTest" expanded="True" />
+          <Node name="WsLabo" expanded="True">
+            <Node name="WsLabo" expanded="True">
+              <Node name="Context" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="RequestExamen.cs" selected="True" />
+              </Node>
+            </Node>
           </Node>
-          <Node name="WsLabo" expanded="True" />
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
@@ -21,7 +34,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/hectorguevara/Documents/GitHub/WsLabo/WsLabo/Controllers/ExamenController.cs" relfile="WsLabo/Controllers/ExamenController.cs" line="31" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
