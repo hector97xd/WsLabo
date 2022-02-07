@@ -5,6 +5,7 @@ namespace WsLabo.Models
     {
         public int Id { get; set; }
         public Laboratorio Laboratorio { get; set; }
+        public Categoria categoria { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string TipoMuestra { get; set; }

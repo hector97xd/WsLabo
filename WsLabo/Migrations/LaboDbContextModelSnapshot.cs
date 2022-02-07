@@ -22,6 +22,23 @@ namespace WsLabo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("WsLabo.Models.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
             modelBuilder.Entity("WsLabo.Models.Examen", b =>
                 {
                     b.Property<int>("Id")
@@ -37,9 +54,6 @@ namespace WsLabo.Migrations
                     b.Property<int>("PacienteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TipoExamenId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UsuarioIngreso")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,8 +64,6 @@ namespace WsLabo.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PacienteId");
-
-                    b.HasIndex("TipoExamenId");
 
                     b.ToTable("Examen");
                 });
@@ -140,6 +152,9 @@ namespace WsLabo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ExamenId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LaboratorioId")
                         .HasColumnType("int");
 
@@ -154,9 +169,16 @@ namespace WsLabo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("categoriaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ExamenId");
+
                     b.HasIndex("LaboratorioId");
+
+                    b.HasIndex("categoriaId");
 
                     b.ToTable("TipoExamen");
                 });
@@ -169,26 +191,35 @@ namespace WsLabo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WsLabo.Models.TipoExamen", "TipoExamen")
-                        .WithMany()
-                        .HasForeignKey("TipoExamenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Paciente");
-
-                    b.Navigation("TipoExamen");
                 });
 
             modelBuilder.Entity("WsLabo.Models.TipoExamen", b =>
                 {
+                    b.HasOne("WsLabo.Models.Examen", null)
+                        .WithMany("TipoExamen")
+                        .HasForeignKey("ExamenId");
+
                     b.HasOne("WsLabo.Models.Laboratorio", "Laboratorio")
                         .WithMany()
                         .HasForeignKey("LaboratorioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WsLabo.Models.Categoria", "categoria")
+                        .WithMany()
+                        .HasForeignKey("categoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Laboratorio");
+
+                    b.Navigation("categoria");
+                });
+
+            modelBuilder.Entity("WsLabo.Models.Examen", b =>
+                {
+                    b.Navigation("TipoExamen");
                 });
 #pragma warning restore 612, 618
         }
