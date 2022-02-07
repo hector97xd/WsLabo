@@ -44,7 +44,6 @@ namespace WsLabo.Controllers
                 response.Status = "Ok";
                 response.Message = "Datos insertados correctamente.";
                 response.Data = JsonConvert.SerializeObject(examen);
-
             }
             catch (Exception ex)
             {
