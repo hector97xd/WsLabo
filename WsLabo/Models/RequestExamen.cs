@@ -31,7 +31,7 @@ namespace WsLabo.Models
     {
         public int Id { get; set; }
         public int Paciente { get; set; }
-        public int TipoExamen { get; set; }
+        public List<int> TipoExamen { get; set; }
         public string Estado { get; set; }
         public string UsuarioIngreso { get; set; }
         [DataType(DataType.Date)]

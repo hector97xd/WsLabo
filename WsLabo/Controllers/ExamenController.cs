@@ -28,14 +28,18 @@ namespace WsLabo.Controllers
             var response = new Response();
             try
             {
+
                 Examen exa = new Examen();
                 exa.Paciente = _context.Paciente.Find(examen.Paciente);
-                exa.TipoExamen = _context.TipoExamen.Find(examen.TipoExamen);
                 exa.Estado = examen.Estado;
                 exa.fechaIngreso = examen.fechaIngreso;
                 exa.UsuarioIngreso = examen.UsuarioIngreso;
-                _context.Examen.Add(exa);
-                await _context.SaveChangesAsync();
+                foreach (var item in examen.TipoExamen)
+                {
+                    exa.TipoExamen = _context.TipoExamen.Find(examen.TipoExamen);
+                    _context.Examen.Add(exa);
+                    await _context.SaveChangesAsync();
+                }             
                 response.Status = "Ok";
                 response.Message = "Datos insertados correctamente.";
                 response.Data = JsonConvert.SerializeObject(examen);
