@@ -12,7 +12,7 @@ using WsLabo.Context;
 namespace WsLabo.Migrations
 {
     [DbContext(typeof(LaboDbContext))]
-    [Migration("20220207020819_inicial")]
+    [Migration("20220213155313_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

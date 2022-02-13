@@ -27,15 +27,14 @@ namespace WsLabo.Controllers
         {
             var response = new Response();
             try
-            {
-
-                Examen exa = new Examen();
-                exa.Paciente = _context.Paciente.Find(examen.Paciente);
-                exa.Estado = examen.Estado;
-                exa.fechaIngreso = examen.fechaIngreso;
-                exa.UsuarioIngreso = examen.UsuarioIngreso;
+            {             
                 foreach (var item in examen.TipoExamen)
                 {
+                    Examen exa = new Examen();
+                    exa.Paciente = _context.Paciente.Find(examen.Paciente);
+                    exa.Estado = examen.Estado;
+                    exa.fechaIngreso = examen.fechaIngreso;
+                    exa.UsuarioIngreso = examen.UsuarioIngreso;
                     exa.TipoExamen = _context.TipoExamen.Find(item);
                     _context.Examen.Add(exa);
                     await _context.SaveChangesAsync();
