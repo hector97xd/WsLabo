@@ -78,11 +78,12 @@ namespace WsLabo.Controllers
             {
                 var ls = await _context.Examen.
                     Include(p => p.Paciente).
-                    Include(p=> p.TipoExamen).
+                    Include(p => p.TipoExamen).
                     Where(x => x.fechaIngreso >= request.FechaInicio && x.fechaIngreso <= request.FechaFin).ToListAsync();
+                var lsAgrupada = ls.GroupBy(x => x.Paciente.Id);
                 response.Data = JsonConvert.SerializeObject(ls);
                 response.Status = "Ok";
-                response.Message = "Lista de Tipo de Examenes";
+                response.Message = "Lista de Examenes";
             }
             catch (Exception ex)
             {
