@@ -36,7 +36,7 @@ namespace WsLabo.Controllers
                 exa.UsuarioIngreso = examen.UsuarioIngreso;
                 foreach (var item in examen.TipoExamen)
                 {
-                    exa.TipoExamen = _context.TipoExamen.Find(examen.TipoExamen);
+                    exa.TipoExamen = _context.TipoExamen.Find(item);
                     _context.Examen.Add(exa);
                     await _context.SaveChangesAsync();
                 }             
